@@ -183,6 +183,11 @@ install_dependencies() {
     echo "Installing backend dependencies..."
     cd "$BACKEND_DIR"
     npm install
+
+    # Rebuild native modules (better-sqlite3) for current Node.js version
+    echo "Rebuilding native modules for Node.js $(node --version)..."
+    npm rebuild better-sqlite3 2>/dev/null || true
+
     print_success "Backend dependencies installed"
 }
 

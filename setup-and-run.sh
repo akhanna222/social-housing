@@ -34,7 +34,7 @@ print_error() {
     echo -e "${RED}✗ $1${NC}"
 }
 
-# Check if node and npm are installed
+# Check if node and npm are installed with correct versions
 check_prerequisites() {
     print_header "Checking Prerequisites"
 
@@ -42,7 +42,49 @@ check_prerequisites() {
         print_error "Node.js is not installed. Please install Node.js first."
         exit 1
     fi
-    print_success "Node.js found: $(node --version)"
+
+    # Check Node.js version (requires 20.19+ or 22.12+)
+    NODE_VERSION=$(node --version | sed 's/v//')
+    NODE_MAJOR=$(echo "$NODE_VERSION" | cut -d. -f1)
+    NODE_MINOR=$(echo "$NODE_VERSION" | cut -d. -f2)
+
+    if [ "$NODE_MAJOR" -lt 20 ]; then
+        print_error "Node.js version $NODE_VERSION is too old."
+        echo ""
+        echo "Vite requires Node.js 20.19+ or 22.12+"
+        echo ""
+        echo "To upgrade Node.js, run:"
+        echo "  # Using nvm (recommended):"
+        echo "  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash"
+        echo "  source ~/.bashrc"
+        echo "  nvm install 22"
+        echo "  nvm use 22"
+        echo ""
+        echo "  # Or using NodeSource:"
+        echo "  curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -"
+        echo "  sudo apt-get install -y nodejs"
+        exit 1
+    elif [ "$NODE_MAJOR" -eq 20 ] && [ "$NODE_MINOR" -lt 19 ]; then
+        print_error "Node.js version $NODE_VERSION is too old."
+        echo ""
+        echo "Vite requires Node.js 20.19+ or 22.12+"
+        echo "Please upgrade to Node.js 20.19+ or 22.x"
+        exit 1
+    elif [ "$NODE_MAJOR" -eq 21 ]; then
+        print_error "Node.js 21.x is not supported."
+        echo ""
+        echo "Vite requires Node.js 20.19+ or 22.12+"
+        echo "Please use Node.js 22.x instead."
+        exit 1
+    elif [ "$NODE_MAJOR" -eq 22 ] && [ "$NODE_MINOR" -lt 12 ]; then
+        print_error "Node.js version $NODE_VERSION is too old."
+        echo ""
+        echo "Vite requires Node.js 22.12+"
+        echo "Please upgrade your Node.js 22.x installation."
+        exit 1
+    fi
+
+    print_success "Node.js found: v$NODE_VERSION"
 
     if ! command -v npm &> /dev/null; then
         print_error "npm is not installed. Please install npm first."

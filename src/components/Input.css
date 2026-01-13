@@ -1,0 +1,142 @@
+/* Careify Input Component Styles */
+
+.careify-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.careify-input__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.careify-input__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.careify-input,
+.careify-textarea,
+.careify-select {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.careify-input:hover,
+.careify-textarea:hover,
+.careify-select:hover {
+  border-color: var(--color-accent);
+}
+
+.careify-input:focus,
+.careify-textarea:focus,
+.careify-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-subtle);
+}
+
+.careify-input::placeholder,
+.careify-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.careify-input:disabled,
+.careify-textarea:disabled,
+.careify-select:disabled {
+  background-color: var(--color-background-warm);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Textarea specific */
+.careify-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Select specific */
+.careify-input__container--select {
+  position: relative;
+}
+
+.careify-select {
+  appearance: none;
+  padding-right: var(--spacing-10);
+  cursor: pointer;
+}
+
+.careify-select__arrow {
+  position: absolute;
+  right: var(--spacing-4);
+  pointer-events: none;
+  color: var(--color-text-muted);
+}
+
+/* Icon positioning */
+.careify-input__container--has-icon-left .careify-input {
+  padding-left: var(--spacing-10);
+}
+
+.careify-input__container--has-icon-right .careify-input {
+  padding-right: var(--spacing-10);
+}
+
+.careify-input__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.careify-input__icon--left {
+  left: var(--spacing-3);
+}
+
+.careify-input__icon--right {
+  right: var(--spacing-3);
+}
+
+.careify-input__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Error state */
+.careify-input__container--error .careify-input,
+.careify-input__container--error .careify-textarea,
+.careify-input__container--error .careify-select {
+  border-color: var(--color-error);
+}
+
+.careify-input__container--error .careify-input:focus,
+.careify-input__container--error .careify-textarea:focus,
+.careify-input__container--error .careify-select:focus {
+  box-shadow: 0 0 0 3px var(--color-error-subtle);
+}
+
+/* Hint and Error messages */
+.careify-input__hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.careify-input__error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error-dark);
+  margin: 0;
+}

@@ -1,0 +1,28 @@
+/* Careify App Styles */
+
+/* Placeholder page */
+.placeholder-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.placeholder-page__content {
+  text-align: center;
+  padding: var(--spacing-8);
+  background-color: var(--color-background-warm);
+  border-radius: var(--radius-xl);
+}
+
+.placeholder-page__content h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.placeholder-page__content p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+}

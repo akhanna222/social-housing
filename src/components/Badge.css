@@ -1,0 +1,84 @@
+/* Careify Badge Component Styles */
+
+.careify-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+/* Sizes */
+.careify-badge--sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-xs);
+}
+
+.careify-badge--md {
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--font-size-sm);
+}
+
+/* Variants - Using soft, non-aggressive colors */
+.careify-badge--default {
+  background-color: var(--color-background-warm);
+  color: var(--color-text-secondary);
+}
+
+.careify-badge--primary {
+  background-color: var(--color-primary-subtle);
+  color: var(--color-primary-dark);
+}
+
+.careify-badge--secondary {
+  background-color: var(--color-secondary-subtle);
+  color: var(--color-secondary-dark);
+}
+
+.careify-badge--success {
+  background-color: var(--color-success-subtle);
+  color: var(--color-success-dark);
+}
+
+.careify-badge--warning {
+  background-color: var(--color-warning-subtle);
+  color: var(--color-warning-dark);
+}
+
+.careify-badge--info {
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent-dark);
+}
+
+.careify-badge--muted {
+  background-color: var(--color-border-light);
+  color: var(--color-text-muted);
+}
+
+/* Dot indicator */
+.careify-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* Icon */
+.careify-badge__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.careify-badge__icon svg {
+  width: 0.875em;
+  height: 0.875em;
+}
+
+/* Text */
+.careify-badge__text {
+  line-height: 1.2;
+}

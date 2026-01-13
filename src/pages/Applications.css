@@ -1,0 +1,195 @@
+/* Applications Page Styles */
+
+.applications-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  animation: fadeIn var(--transition-normal);
+}
+
+/* Header */
+.applications-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+
+.applications-page__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.applications-page__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: var(--spacing-1) 0 0 0;
+}
+
+/* Search and filters */
+.applications-page__filters {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+}
+
+.applications-page__search {
+  flex: 1;
+  max-width: 400px;
+}
+
+.applications-page__filter-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  margin-left: var(--spacing-1);
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+/* Filter panel */
+.applications-page__filter-panel {
+  animation: slideUp var(--transition-fast);
+}
+
+.filter-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+}
+
+/* Applications table */
+.applications-page__list {
+  overflow: hidden;
+}
+
+.applications-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.applications-table th {
+  text-align: left;
+  padding: var(--spacing-4) var(--spacing-5);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  background-color: var(--color-background-warm);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.applications-table td {
+  padding: var(--spacing-4) var(--spacing-5);
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: middle;
+}
+
+.applications-table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.applications-table tbody tr:hover {
+  background-color: var(--color-background-warm);
+}
+
+.applications-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Applicant cell */
+.applicant-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.applicant-cell__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.applicant-cell__name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.applicant-cell__household {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Reference number */
+.reference-number {
+  font-family: monospace;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  background-color: var(--color-background-warm);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+}
+
+/* Completeness cell */
+.completeness-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 120px;
+}
+
+.completeness-cell__value {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* Date cell */
+.date-cell {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .applications-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .applications-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .applications-page__filters {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .applications-page__search {
+    max-width: none;
+    width: 100%;
+  }
+}

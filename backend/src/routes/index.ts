@@ -2,7 +2,9 @@ import { Router } from 'express';
 import multer from 'multer';
 import { applicationController } from '../controllers/application.controller.js';
 import { documentController } from '../controllers/document.controller.js';
+import { schemaVersioningService } from '../services/schema-versioning.service.js';
 import { config } from '../config/index.js';
+import type { DocumentCategory } from '../types/index.js';
 
 const router = Router();
 
@@ -60,5 +62,94 @@ router.post(
 );
 router.patch('/documents/:id/classification', documentController.overrideClassification.bind(documentController));
 router.delete('/documents/:id', documentController.delete.bind(documentController));
+
+// Schema versioning routes
+router.get('/schemas', (req, res) => {
+  const metadata = schemaVersioningService.exportSchemaMetadata();
+  res.json({
+    success: true,
+    data: metadata,
+  });
+});
+
+router.get('/schemas/:category', (req, res) => {
+  const category = req.params.category as DocumentCategory;
+  const registry = schemaVersioningService.getRegistry(category);
+
+  if (!registry) {
+    return res.status(404).json({
+      success: false,
+      error: { code: 'NOT_FOUND', message: `Schema registry not found for category: ${category}` },
+    });
+  }
+
+  res.json({
+    success: true,
+    data: {
+      category,
+      currentVersion: registry.currentVersion,
+      versions: registry.versions.map((v) => ({
+        version: v.version,
+        createdAt: v.createdAt,
+        description: v.description,
+        changelog: v.changelog,
+        requiredFields: v.requiredFields,
+      })),
+    },
+  });
+});
+
+router.get('/schemas/:category/current', (req, res) => {
+  const category = req.params.category as DocumentCategory;
+  const schema = schemaVersioningService.getCurrentSchema(category);
+
+  if (!schema) {
+    return res.status(404).json({
+      success: false,
+      error: { code: 'NOT_FOUND', message: `Current schema not found for category: ${category}` },
+    });
+  }
+
+  res.json({
+    success: true,
+    data: schema,
+  });
+});
+
+router.get('/schemas/:category/versions/:version', (req, res) => {
+  const category = req.params.category as DocumentCategory;
+  const version = req.params.version as string;
+  const schema = schemaVersioningService.getSchemaVersion(category, version);
+
+  if (!schema) {
+    return res.status(404).json({
+      success: false,
+      error: { code: 'NOT_FOUND', message: `Schema version ${version} not found for category: ${category}` },
+    });
+  }
+
+  res.json({
+    success: true,
+    data: schema,
+  });
+});
+
+router.get('/schemas/:category/changelog', (req, res) => {
+  const category = req.params.category as DocumentCategory;
+  const fromVersion = req.query.from as string || '1.0.0';
+  const toVersion = req.query.to as string || schemaVersioningService.getCurrentVersion(category);
+
+  const changelog = schemaVersioningService.getChangelog(category, fromVersion, toVersion);
+
+  res.json({
+    success: true,
+    data: {
+      category,
+      fromVersion,
+      toVersion,
+      changelog,
+    },
+  });
+});
 
 export default router;

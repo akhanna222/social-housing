@@ -126,6 +126,14 @@ export function initializeDatabase(): void {
     CREATE INDEX IF NOT EXISTS idx_processing_log_application ON processing_log(application_id);
   `);
 
+  // Sequences table (for generating unique reference numbers)
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS sequences (
+      name TEXT PRIMARY KEY,
+      current_value INTEGER NOT NULL DEFAULT 0
+    );
+  `);
+
   console.log('Database initialized successfully');
 }
 

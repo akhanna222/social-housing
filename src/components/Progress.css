@@ -1,0 +1,151 @@
+/* Careify Progress Component Styles */
+
+/* Progress Bar */
+.careify-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.careify-progress__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.careify-progress__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.careify-progress__value {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+.careify-progress__track {
+  width: 100%;
+  background-color: var(--color-border-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.careify-progress__track--sm {
+  height: 4px;
+}
+
+.careify-progress__track--md {
+  height: 8px;
+}
+
+.careify-progress__track--lg {
+  height: 12px;
+}
+
+.careify-progress__fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
+
+.careify-progress__fill--default {
+  background: linear-gradient(90deg, var(--color-primary-light), var(--color-primary));
+}
+
+.careify-progress__fill--success {
+  background: linear-gradient(90deg, var(--color-success-light), var(--color-success));
+}
+
+.careify-progress__fill--warning {
+  background: linear-gradient(90deg, var(--color-warning-light), var(--color-warning));
+}
+
+/* Step Progress */
+.careify-step-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.careify-step-progress__header {
+  text-align: center;
+}
+
+.careify-step-progress__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.careify-step-progress__track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.careify-step-progress__step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.careify-step-progress__step--pending {
+  background-color: var(--color-border-light);
+  color: var(--color-text-muted);
+}
+
+.careify-step-progress__step--current {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  box-shadow: 0 0 0 4px var(--color-primary-subtle);
+}
+
+.careify-step-progress__step--completed {
+  background-color: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+.careify-step-progress__step svg {
+  width: 18px;
+  height: 18px;
+}
+
+.careify-step-progress__connector {
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-border-light);
+  margin: 0 var(--spacing-2);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-normal);
+}
+
+.careify-step-progress__connector--completed {
+  background-color: var(--color-success);
+}
+
+.careify-step-progress__labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-2);
+}
+
+.careify-step-progress__step-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  flex: 1;
+}
+
+.careify-step-progress__step-label--current {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}

@@ -1,0 +1,142 @@
+/* Careify Empty State Component Styles */
+
+.careify-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-12) var(--spacing-6);
+  color: var(--color-text-secondary);
+}
+
+.careify-empty-state__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-primary-subtle);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-6);
+  color: var(--color-primary);
+}
+
+.careify-empty-state__icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.careify-empty-state__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.careify-empty-state__description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-6) 0;
+  max-width: 400px;
+  line-height: var(--line-height-relaxed);
+}
+
+.careify-empty-state__action {
+  margin-top: var(--spacing-2);
+}
+
+/* Loading State */
+.careify-loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-12) var(--spacing-6);
+}
+
+.careify-loading-state__spinner {
+  width: 48px;
+  height: 48px;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.careify-loading-state__spinner svg {
+  width: 100%;
+  height: 100%;
+  animation: spin 1.2s linear infinite;
+}
+
+.careify-loading-state__message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Success State */
+.careify-success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-12) var(--spacing-6);
+}
+
+.careify-success-state__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  background-color: var(--color-success-subtle);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-6);
+  color: var(--color-success);
+  animation: scaleIn 0.3s ease-out;
+}
+
+.careify-success-state__icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.careify-success-state__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.careify-success-state__message {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-6) 0;
+  max-width: 400px;
+  line-height: var(--line-height-relaxed);
+}
+
+.careify-success-state__action {
+  margin-top: var(--spacing-2);
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

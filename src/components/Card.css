@@ -1,0 +1,237 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   CAREIFY CARD COMPONENT - Glassmorphism Design
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.careify-card {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all var(--duration-300) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gradient overlay */
+.careify-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.careify-card--hover:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+  border-color: var(--color-primary-200);
+}
+
+.careify-card--clickable {
+  cursor: pointer;
+}
+
+.careify-card--clickable:focus-visible {
+  outline: 2px solid var(--color-primary-400);
+  outline-offset: 3px;
+}
+
+.careify-card--clickable:active {
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   PADDING VARIATIONS
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.careify-card--padding-none {
+  padding: 0;
+}
+
+.careify-card--padding-sm {
+  padding: var(--spacing-5);
+}
+
+.careify-card--padding-md {
+  padding: var(--spacing-7);
+}
+
+.careify-card--padding-lg {
+  padding: var(--spacing-10);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   CARD HEADER
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.careify-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding-bottom: var(--spacing-5);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: var(--spacing-5);
+}
+
+.careify-card__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.careify-card__header-action {
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   CARD TITLE
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.careify-card__title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5);
+}
+
+.careify-card__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.careify-card__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   CARD CONTENT
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.careify-card__content {
+  color: var(--color-text-primary);
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   CARD FOOTER
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.careify-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding-top: var(--spacing-5);
+  border-top: 1px solid var(--color-border-light);
+  margin-top: var(--spacing-5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   CARD VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Highlighted card */
+.careify-card--highlighted {
+  background: linear-gradient(
+    145deg,
+    var(--color-primary-50) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  border-color: var(--color-primary-200);
+}
+
+.careify-card--highlighted::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-2xl) 0 0 var(--radius-2xl);
+}
+
+/* Success card */
+.careify-card--success {
+  background: linear-gradient(
+    145deg,
+    var(--color-success-subtle) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  border-color: rgba(20, 184, 166, 0.2);
+}
+
+/* Warning card */
+.careify-card--warning {
+  background: linear-gradient(
+    145deg,
+    var(--color-warning-subtle) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+/* Attention card */
+.careify-card--attention {
+  background: linear-gradient(
+    145deg,
+    var(--color-attention-subtle) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  border-color: rgba(249, 115, 22, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   STAT CARDS
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.careify-card--stat {
+  text-align: center;
+  padding: var(--spacing-6);
+}
+
+.careify-card--stat .stat-value {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-2);
+}
+
+.careify-card--stat .stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  .careify-card--padding-lg {
+    padding: var(--spacing-6);
+  }
+
+  .careify-card--padding-md {
+    padding: var(--spacing-5);
+  }
+}

@@ -15,10 +15,41 @@ import type {
 
 // Application Repository
 export class ApplicationRepository {
+  /**
+   * Generate a unique reference number using a database sequence.
+   * Format: SH-YYYY-NNNN where NNNN is a zero-padded sequential number.
+   * Uses atomic database operations to prevent race conditions and duplicates.
+   */
   private generateReferenceNumber(): string {
+    const db = getDatabase();
     const year = new Date().getFullYear();
-    const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-    return `SH-${year}-${random}`;
+    const sequenceName = `ref_number_${year}`;
+
+    // Use a transaction to atomically increment and retrieve the sequence
+    const getNextSequence = db.transaction(() => {
+      // Try to increment existing sequence
+      const updateResult = db.prepare(
+        'UPDATE sequences SET current_value = current_value + 1 WHERE name = ?'
+      ).run(sequenceName);
+
+      if (updateResult.changes === 0) {
+        // Sequence doesn't exist for this year, create it starting at 1
+        db.prepare(
+          'INSERT INTO sequences (name, current_value) VALUES (?, 1)'
+        ).run(sequenceName);
+        return 1;
+      }
+
+      // Get the updated value
+      const row = db.prepare(
+        'SELECT current_value FROM sequences WHERE name = ?'
+      ).get(sequenceName) as { current_value: number };
+
+      return row.current_value;
+    });
+
+    const sequenceNumber = getNextSequence();
+    return `SH-${year}-${sequenceNumber.toString().padStart(4, '0')}`;
   }
 
   create(cluid: string, applicantData: ApplicantData): Application {
